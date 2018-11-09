@@ -95,12 +95,15 @@ div.tooltip {
   fill:green;
   font-weight: bold;
 }
-#btn-next, #btn-next2, #btn-next3{
-  outline: none;
+#btn-next:active, #btn-next2, #btn-next3{
+  outline: none !important;
 }
 #btn-preview, #btn-preview2, #btn-preview3 {
   outline: none;
 }
 circle {
   cursor: pointer;
+}
+button:focus {
+  box-shadow: none;
 }

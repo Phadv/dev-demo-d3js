@@ -1,12 +1,13 @@
 import {Component, OnInit} from '@angular/core';
 import * as d3 from 'd3';
+import {TranslateService} from '@ngx-translate/core';
 @Component({
   selector: 'app-chart1',
   templateUrl: './chart1.component.html',
   styleUrls: ['./chart1.component.css']
 })
 export class Chart1Component implements OnInit {
-  constructor() { }
+  constructor(private translate: TranslateService) { }
   public w;
   public h;
   public dataY;
@@ -156,30 +157,35 @@ export class Chart1Component implements OnInit {
       .attr('y2', 377);
 
     ////////////Add Title//////////////
-    svg.append('text')
-      .attr('x', (w / 2))
-      .attr('text-anchor', 'middle')
-      .style('font-size', '26px')
-      .attr('y', 20)
-      .text('アクティブユーザー411');
-    svg.append('text')
-      .attr('x', (w / 2))
-      .attr('text-anchor', 'middle')
-      .style('font-size', '26px')
-      .attr('y', 45)
-      .text('2位／278社中');
-    if (this.fistYear === this.lastYear) {
-      this.txtYear = '(' + this.fistYear + '年)';
-    } else {
-      this.txtYear = '(' + this.fistYear + '年-' + this.lastYear + '年)';
-    }
+    this.translate.get('CHART1.TITLE1') .subscribe(value => {
+      svg.append('text')
+        .attr('x', (w / 2))
+        .attr('text-anchor', 'middle')
+        .style('font-size', '26px')
+        .attr('y', 20)
+        .text(value);
+    });
+    this.translate.get('CHART1.TITLE2') .subscribe(value => {
+      svg.append('text')
+        .attr('x', (w / 2))
+        .attr('text-anchor', 'middle')
+        .style('font-size', '26px')
+        .attr('y', 45)
+        .text(value);
+    });
+    this.translate.get('CHART1.TITLE3') .subscribe(value => {
+      if (this.fistYear === this.lastYear) {
+        this.txtYear = '(' + this.fistYear + value + ')';
+      } else {
+        this.txtYear = '(' + this.fistYear + value + '-' + this.lastYear + value + ')';
+      }
     svg.append('text')
       .attr('x', (w / 2))
       .attr('text-anchor', 'middle')
       .style('font-size', '26px')
       .attr('y', 70)
       .text(this.txtYear);
-
+    });
     ////////////Add ToolTip and Line when Hover//////////////
     const div = d3.select('body').append('div')
       .attr('class', 'tooltip')
@@ -253,7 +259,7 @@ export class Chart1Component implements OnInit {
       .attr('cx', function(d) { return (d.x); })
       .attr('cy', function(d) { return (d.y); })
       .on('mouseover', function() {
-        div .attr('addcss', color)
+        div.attr('addcss', color);
         d3.select('.mouse-line')
           .style('opacity', '1');
         d3.selectAll('.mouse-per-line circle')
@@ -267,7 +273,7 @@ export class Chart1Component implements OnInit {
         const value = (300 - (d.y - 83)) / 300 * 40;
         const number = value.toFixed(2);
         div	.html('<div style="font-size:16px">' + d.year + '事' + (d.month) + '者 12 事' +
-          '</div><div style="float: left;font-size:16px">平均</div>' + '<div style="float: right;font-size:16px">' + number + '%</div>')
+          '</div><div style="float: left;font-size:16px">平均</div>' + '<div style="float: right;font-size:16px">' + number + '%</div>');
         d3.select('.mouse-line')
           .attr('d', function() {
             let d = 'M' + mouse[0] + ',' + 377;
