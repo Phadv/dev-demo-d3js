@@ -1,3 +1,13 @@
-<p>
-  chart1 works!
-</p>
+<div id="graphic"></div>
+<div id="btn">
+  <button type="button" id="btn-preview" (click)='btnPreview()' class="btn btn-default btn-lg">
+    <span class="fas fa-arrow-left" aria-hidden="true"></span>
+  </button>
+  <button type="button" id="btn-next" (click)='btnNext()' class="btn btn-default btn-lg">
+    <span class="fas fa-arrow-right" aria-hidden="true"></span>
+  </button>
+</div>
+<div id="txtYear" [hidden]="!showYear" style='width: 100%; color: gray;font-size: 20px'>
+  <div style="float: left; margin-left: 17px">{{fistYear}}</div>
+  <div style="float: right;margin-right: 90px">{{lastYear}}</div>
+</div>

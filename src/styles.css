@@ -1,1 +1,106 @@
 /* You can add global styles to this file, and also import other style files */
+@import '~bootstrap/dist/css/bootstrap.min.css';
+.line {
+  /*   fill: none が無いとpath の始点と終点を結んで黒に塗りつぶされる */
+  fill: none;
+  stroke: #eaeaea;
+  stroke-width: 1px;
+}
+.lineRed {
+  fill: none;
+  stroke: #CB4A4C;
+  stroke-width: 1px;
+}
+.lineBlue {
+  fill: none;
+  stroke: #CB4A4C;
+  stroke-width: 1px;
+}
+.lineGray {
+  fill: none;
+  stroke: #B2B2B2;
+  stroke-width: 1px;
+}
+.lineGreen {
+  fill: none;
+  stroke: gray;
+  stroke-width: 1px;
+}
+#graphic, #graphic2, #graphic3 {
+  padding-top: 60px;
+}
+
+.gX line, .gY line {
+  display: none;
+}
+.gY path {
+  display: none;
+}
+.gX path {
+  display: none;
+}
+.gY text {
+  color: gray;
+}
+div.tooltip {
+  position: absolute;
+  text-align: center;
+  width: 160px;
+  height: 50px;
+  padding: 2px;
+  background: #fff;
+  font-weight: bold;
+}
+[addcss=red] {
+  color: #CB4A4C;
+  border: 2px solid #CB4A4C !important;
+}
+[addcss=blue] {
+  color: #609FEE;
+  border: 2px solid #609FEE !important;
+}
+[addcss=gray] {
+  color: #B2B2B2;
+  border: 2px solid #B2B2B2 !important;
+}
+[addcss=green] {
+  color: Green;
+  border: 2px solid green !important;
+}
+.red {
+  fill: #CB4A4C !important;
+}
+.blue {
+  fill: #609FEE !important;
+}
+.gray {
+  fill: #B2B2B2 !important;
+}
+.green {
+  fill: Green
+}
+.txtRed {
+  fill:red;
+  font-weight: bold;
+}
+.txtBlue {
+  fill:blue;
+  font-weight: bold;
+}
+.txtGray {
+  fill:gray;
+  font-weight: bold;
+}
+.txtGreen {
+  fill:green;
+  font-weight: bold;
+}
+#btn-next, #btn-next2, #btn-next3{
+  outline: none;
+}
+#btn-preview, #btn-preview2, #btn-preview3 {
+  outline: none;
+}
+circle {
+  cursor: pointer;
+}

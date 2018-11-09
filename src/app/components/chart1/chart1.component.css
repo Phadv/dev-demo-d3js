@@ -1,0 +1,23 @@
+div#btn {
+  position: absolute;
+  top: 100px;
+  width: 100%;
+}
+button {
+  width: 50px;
+  height: 35px;
+  position: absolute;
+}
+button > span{
+  color: #eaeaea;
+  top: -3px;
+}
+button#btn-next {
+  right: 100px;
+}
+#print {
+  left: 100px;
+}
+div:disabled {
+  display: none;
+}

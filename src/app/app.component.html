@@ -1,1 +1,30 @@
-<app-chart1></app-chart1>
+<div class="container-fluid">
+  <div class="col-sm-12">
+    <select class='cssSelect' (change)="selectOption($event.target.value)">
+      <option>all</option>
+      <option>chart1</option>
+      <option>chart2</option>
+      <option>chart3</option>
+      <option>graphic-4</option>
+    </select>
+    <button id="print" (click)="print()">Print</button>
+  </div>
+  <div id="all">
+    <div class="row">
+      <div class="col-sm-6">
+        <app-chart1></app-chart1>
+      </div>
+      <div class="col-sm-6 ">
+        <app-chart2></app-chart2>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-6 " id="graphic3-box">
+        <app-chart3></app-chart3>
+      </div>
+      <div class="col-sm-6">
+        <app-chart4></app-chart4>
+      </div>
+    </div>
+  </div>
+</div>
