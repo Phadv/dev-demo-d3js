@@ -215,11 +215,13 @@ export class Chart1Component implements OnInit {
         .data([data])
         .attr('d', valueline)
         .attr('style', 'fill: none; stroke: #CB4A4C;stroke-width: 1.5px;');
-      svg.append('text')
-        .attr('style', 'fill:red;font-size:20px;')
-        .attr('transform', 'translate(' + (w - 90) + ', ' + h + ')')
-        .attr('text-anchor', 'middle')
-        .text('平均');
+      this.translate.get('CHART1.LINE3') .subscribe(l3 => {
+        svg.append('text')
+          .attr('style', 'fill:red;font-size:20px;')
+          .attr('transform', 'translate(' + (w - 90) + ', ' + (h - 7) + ')')
+          .attr('text-anchor', 'middle')
+          .text(l3);
+      });
     } else if (check === 'blue') {
       const valueline = d3.line()
         .x(function(d) { return (d.x); })
@@ -228,11 +230,13 @@ export class Chart1Component implements OnInit {
         .data([data])
         .attr('d', valueline)
         .attr('style', 'fill: none; stroke: #609FEE;stroke-width: 1.5px;');
-      svg.append('text')
-        .attr('style', 'fill:blue;font-size:20px;')
-        .attr('transform', 'translate(' + (w - 90) + ', ' + h + ')')
-        .attr('text-anchor', 'middle')
-        .text('自社');
+      this.translate.get('CHART1.LINE2') .subscribe(value => {
+        svg.append('text')
+          .attr('style', 'fill:blue;font-size:20px;')
+          .attr('transform', 'translate(' + (w - 90) + ', ' + (h - 7) + ')')
+          .attr('text-anchor', 'middle')
+          .text(value);
+      });
     } else {
       const valueline = d3.line()
         .x(function(d) { return (d.x); })
@@ -243,54 +247,58 @@ export class Chart1Component implements OnInit {
         .attr('style', 'fill: none; stroke: #B2B2B2;stroke-width: 1.5px;');
       svg.append('text')
         .attr('style', 'fill:gray;font-size:20px;')
-        .attr('transform', 'translate(' + (w - 90) + ', ' + h + ')')
+        .attr('transform', 'translate(' + (w - 90) + ', ' + (h - 7) + ')')
         .attr('text-anchor', 'middle')
         .text('TOP');
     }
   }
 
   toolTip(svg, div, data, color) {
-    svg.selectAll('dot')
-      .data(data)
-      .enter().append('circle')
-      .attr('r', 4)
-      .attr('class', color)
-      .style('fill', color)
-      .attr('cx', function(d) { return (d.x); })
-      .attr('cy', function(d) { return (d.y); })
-      .on('mouseover', function() {
-        div.attr('addcss', color);
-        d3.select('.mouse-line')
-          .style('opacity', '1');
-        d3.selectAll('.mouse-per-line circle')
-          .style('opacity', '1');
-        d3.selectAll('.mouse-per-line text')
-          .style('opacity', '1');
-        return div.style('opacity', '1');
-      })
-      .on('mousemove', function(d) {
-        const mouse = d3.mouse(this);
-        const value = (300 - (d.y - 83)) / 300 * 40;
-        const number = value.toFixed(2);
-        div	.html('<div style="font-size:16px">' + d.year + '事' + (d.month) + '者 12 事' +
-          '</div><div style="float: left;font-size:16px">平均</div>' + '<div style="float: right;font-size:16px">' + number + '%</div>');
-        d3.select('.mouse-line')
-          .attr('d', function() {
-            let d = 'M' + mouse[0] + ',' + 377;
-            d += ' ' + mouse[0] + ',' + 83;
-            return d;
-          });
-        return div.style('top', (d3.event.pageY - 10) + 'px').style('left', (d3.event.pageX + 10) + 'px');
-      })
-      .on('mouseout', function() {
-        d3.select('.mouse-line')
-          .style('opacity', '0');
-        d3.selectAll('.mouse-per-line circle')
-          .style('opacity', '0');
-        d3.selectAll('.mouse-per-line text')
-          .style('opacity', '0');
-        return div.style('opacity', '0');
+    this.translate.get('CHART1.LINE2') .subscribe(l2 => {
+      this.translate.get('CHART1.LINE3') .subscribe(l3 => {
+      svg.selectAll('dot')
+        .data(data)
+        .enter().append('circle')
+        .attr('r', 4)
+        .attr('class', color)
+        .style('fill', color)
+        .attr('cx', function(d) { return (d.x); })
+        .attr('cy', function(d) { return (d.y); })
+        .on('mouseover', function() {
+          div.attr('addcss', color);
+          d3.select('.mouse-line')
+            .style('opacity', '1');
+          d3.selectAll('.mouse-per-line circle')
+            .style('opacity', '1');
+          d3.selectAll('.mouse-per-line text')
+            .style('opacity', '1');
+          return div.style('opacity', '1');
+        })
+        .on('mousemove', function(d) {
+          const mouse = d3.mouse(this);
+          const value = (300 - (d.y - 83)) / 300 * 40;
+          const number = value.toFixed(2);
+          div	.html('<div style="font-size:16px">' + d.year + '事' + (d.month) + '者 12 事' +
+            '</div><div style="float: left;font-size:16px">' + l3 + '</div><div style="float: right;font-size:16px">' + number + '%</div>');
+          d3.select('.mouse-line')
+            .attr('d', function() {
+              let d = 'M' + mouse[0] + ',' + 377;
+              d += ' ' + mouse[0] + ',' + 83;
+              return d;
+            });
+          return div.style('top', (d3.event.pageY - 10) + 'px').style('left', (d3.event.pageX + 10) + 'px');
+        })
+        .on('mouseout', function() {
+          d3.select('.mouse-line')
+            .style('opacity', '0');
+          d3.selectAll('.mouse-per-line circle')
+            .style('opacity', '0');
+          d3.selectAll('.mouse-per-line text')
+            .style('opacity', '0');
+          return div.style('opacity', '0');
+        });
       });
+    });
   }
 
   getRandomInt(min, max) {
