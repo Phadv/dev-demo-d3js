@@ -5,5 +5,10 @@
     "TITLE3": "Year",
     "LINE2": "Our company",
     "LINE3": "Average"
+  },
+  "chart-4": {
+    "title": "4 active people",
+    "des": "4th place / 278 companies",
+    "value": "value"
   }
 }

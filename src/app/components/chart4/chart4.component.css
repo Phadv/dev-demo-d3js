@@ -64,15 +64,15 @@ button.next {
 div.box{
 
 }
-.btn-arrow {
-  border: solid 1px #707070;
-  border-radius: 4px;
-  color: #7F7F7F;
-  font-size: 30px;
-  cursor: pointer;
-  background-color: #FFFFFF;
-  padding-bottom: 4px;
-}
+/*.btn-arrow {*/
+  /*border: solid 1px #707070;*/
+  /*border-radius: 4px;*/
+  /*color: #7F7F7F;*/
+  /*font-size: 30px;*/
+  /*cursor: pointer;*/
+  /*background-color: #FFFFFF;*/
+  /*padding-bottom: 4px;*/
+/*}*/
 div.tooltip {
   text-align: center;
   background: #eae5e5f2;
@@ -82,4 +82,40 @@ div.tooltip {
 .btn-change{
   display: flex;
   justify-content: center;
+}
+#title4 {
+  position: relative;
+  top: 95px;
+}
+#title4 div {
+  bottom: 0;
+}
+
+button {
+  width: 50px;
+  height: 35px;
+  background: #fff;
+  position: absolute;
+  border: 2px solid #eaeaea;
+  border-radius: 8px;
+  display: flex;
+}
+button > span{
+  color: #eaeaea;
+  top: -3px;
+}
+button#btn-next4 {
+  right: 100px;
+}
+#print {
+  left: 100px;
+}
+div:disabled {
+  display: none;
+}
+#btn-preview4:focus {
+  outline: none !important;
+}
+#btn-next4:focus {
+  outline: none !important;
 }

@@ -65,7 +65,7 @@ export class Chart2Component implements OnInit {
     this.drawLine(this.svg, fakeDataRed, this.w, '250', 'red');
     this.drawLine(this.svg, fakeBlue, this.w, '190', 'blue');
     this.drawLine(this.svg, fakeGray, this.w, '140', 'gray');
-    this.drawLine(this.svg, fakeGreen, this.w, '140', 'green');
+    this.drawLine(this.svg, fakeGreen, this.w, '160', 'green');
     this.firstData = customDataRed[0];
     this.lastData = customDataRed[customDataRed.length - 1];
   }
@@ -184,7 +184,7 @@ export class Chart2Component implements OnInit {
     const mouseG = svg.append('g')
       .attr('class', 'mouse-over-effects');
     mouseG.append('path') // this is the black vertical line to follow mouse
-      .attr('class', 'mouse-line3')
+      .attr('class', 'mouse-line2')
       .style('stroke', '#eaeaea')
       .style('stroke-width', '3')
       .style('stroke-dasharray', '10,10')
@@ -271,7 +271,7 @@ export class Chart2Component implements OnInit {
           .attr('cy', function(d) { return (d.y); })
           .on('mouseover', function() {
             div.attr('addcss', color);
-            d3.select('.mouse-line3')
+            d3.select('.mouse-line2')
               .style('opacity', '1');
             d3.selectAll('.mouse-per-line circle')
               .style('opacity', '1');
@@ -296,7 +296,7 @@ export class Chart2Component implements OnInit {
             div	.html('<div style="font-size:16px">' + d.year + '事' + (d.month) + '者 12 事' +
               '</div><div style="float: left;font-size:16px">' + txtLine + '</div><div style="float: right;font-size:16px">' +
               number + '%</div>');
-            d3.select('.mouse-line3')
+            d3.select('.mouse-line2')
               .attr('d', function() {
                 let d = 'M' + centerX + ',' + 377;
                 d += ' ' + centerX + ',' + 83;
@@ -305,7 +305,7 @@ export class Chart2Component implements OnInit {
             return div.style('top', (d3.event.pageY - 10) + 'px').style('left', (d3.event.pageX + 10) + 'px');
           })
           .on('mouseout', function() {
-            d3.select('.mouse-line3')
+            d3.select('.mouse-line2')
               .style('opacity', '0');
             d3.selectAll('.mouse-per-line circle')
               .style('opacity', '0');

@@ -39,15 +39,15 @@ export class Chart4Component implements OnInit {
     {month: '9', 平均: '75', 自社: '40', year: '2019'},
     {month: '10', 平均: '10', 自社: '50', year: '2019'},
     {month: '11', 平均: '50', 自社: '10', year: '2019'},
-    {month: '12', 平均: '40', 自社: '90', year: '2019'},
-    {month: '1', 平均: '40', 自社: '90', year: '2020'},
+    {month: '12', 平均: '40', 自社: '50', year: '2019'},
+    {month: '1', 平均: '40', 自社: '50', year: '2020'},
   ];
   private valueColum: string;
   constructor(private translate: TranslateService) {
   }
   ngOnInit() {
     this.translate.get('chart-4.value').subscribe((res: string) => {
-      this.valueColum=res;
+      this.valueColum = res;
       this.renderChart(this.data_begin);
     });
   }
@@ -63,14 +63,14 @@ export class Chart4Component implements OnInit {
     });
     const svg = d3.select('#graphic4'),
       margin = {top: 20, right: 20, bottom: 30, left: 75},
-      width = + parseInt(d3.select('.box').style('width')) - margin.left - margin.right ,
+      width = + parseInt(d3.select('.box').style('width'), 10) - margin.left - margin.right ,
       height = +svg.attr('height') - margin.top - margin.bottom,
       g = svg.append('g').attr('transform', 'translate(' + margin.right + ',' + margin.top + ')');
-    svg.attr('width', parseInt(d3.select('.box').style('width')));
+    svg.attr('width', parseInt(d3.select('.box').style('width'), 10));
     const x0 = d3.scaleBand()
       .domain(d3.range(this.data_now.length))
       // chiều rộng các của biểu đồ
-      .rangeRound([0, width])
+      .rangeRound([0, width - 30])
       // margin giữa các côt chính
       .paddingInner(0.1);
 
@@ -107,19 +107,24 @@ export class Chart4Component implements OnInit {
 
     g.append('g')
       .attr('class', 'axis')
-      .style('color', '#808080')
+      .style('color', '#eaeaea')
       .style('stroke-width', 1.5)
-      .style('stroke-opacity', 0.4)
+      .style('font-size', 20)
       .call(yAxis)
-      .append('text')
-      .attr('transform', 'translate(' + 0 + ', 0)')
-      .attr('x', parseInt(d3.select('.box').style('width'))  - margin.left - margin.right)
+      .selectAll('text')
+      .style('color', 'gray')
+      .style('margin-left', 20)
+      .selectAll('line')
+      // .x(function(d) { return d.x - 50; })
+      // .append('text')
+      // .attr('transform', 'translate(' + 0 + ', 0)')
+      .attr('x', parseInt(d3.select('.box').style('width'), 10)  - margin.left - margin.right)
       .attr('y', y(y.ticks().pop()) + 0.5 - 10)
-      .attr('dy', '0.32em')
-      .attr('fill', '#000')
-      .attr('font-weight', 'bold')
-      .attr('text-anchor', 'start')
-      .text(this.valueColum);
+      // .attr('dy', '0.32em')
+      // .attr('fill', '#000')
+      // .attr('font-weight', 'bold')
+      // .attr('text-anchor', 'start')
+      // .text(this.valueColum);
     g.append('g')
       .selectAll('g')
       .data(this.data_now)
@@ -168,19 +173,20 @@ export class Chart4Component implements OnInit {
     g.append('g')
       .attr('class', 'axis bottom')
       .attr('transform', 'translate(0,' + height + ')')
+      .style('font-size', 20)
       .call(d3.axisBottom(x0).tickFormat((d , i ) => {
         return (d + '回' );
       }));
 
-    const tickText = d3.selectAll(` .axis.bottom .tick text`);
-    if (tickText.select('tspan.tick-year').empty()) {
-      tickText.append('tspan').data(this.data_now)
-        .text((d,i) => {
-          return (((i == 0 || i == this.data_now.length - 1)) ? this.data_now[i]['year'] : '');
-        }).attr('class', 'tick-year')
-        .attr('dy', '1em')
-        .attr('x',     0);
-    }
+    // const tickText = d3.selectAll(` .axis.bottom .tick text`);
+    // if (tickText.select('tspan.tick-year').empty()) {
+    //   tickText.append('tspan').data(this.data_now)
+    //     .text((d,i) => {
+    //       return (((i == 0 || i == this.data_now.length - 1)) ? this.data_now[i]['year'] : '');
+    //     }).attr('class', 'tick-year')
+    //     .attr('dy', '1em')
+    //     .attr('x',     0);
+    // }
 
     g.append('g').selectAll('text')
       .data([this.data_now[0]])
@@ -197,7 +203,7 @@ export class Chart4Component implements OnInit {
         return  y((d['自社'] > (d['平均'])) ? d['自社'] : d['平均'])  - 14 ;
       })
       .attr('font-family', 'sans-serif')
-      .attr('font-size', '11px')
+      .attr('font-size', '16px')
       .attr('fill', 'blue');
 
     g.append('g').selectAll('text')
@@ -215,7 +221,7 @@ export class Chart4Component implements OnInit {
         return  y((d['自社'] > (d['平均'])) ? d['自社'] : d['平均'])  - 14  ;
       })
       .attr('font-family' , 'sans-serif' )
-      .attr('font-size' , '11px' )
+      .attr('font-size' , '15px' )
       .attr('fill' , 'red' );
   }
   btnPreview() {

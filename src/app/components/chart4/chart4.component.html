@@ -1,25 +1,25 @@
-<div  id="graphic-4" >
-  <div class="row" style="margin-top: 80px">
-    <div  class="col-md-3 col-md-3 col-sm-3  col-xs-3 btn-change ">
-      <button type="button" id="btn-preview" (click)='btnPreview()' class="btn btn-default btn-lg">
-        <i class="fa fa-arrow-left"></i>
+<div  id="graphic-4">
+  <div id="title4" style="z-index: 9999999">
+    <div class="col-sm-3">
+      <button type="button" id="btn-preview4" (click)='btnPreview()' class="btn btn-default btn-lg">
+        <span class="fas fa-arrow-left" aria-hidden="true"></span>
       </button>
     </div>
-    <div  class="col-md-6 col-md-6 col-sm-6  col-xs-6" style="text-align: center">
-      <div class="row" style="font-size: 26px">
+    <div class="col-sm-6" style="top:-35px;text-align: center">
+      <div class="row" style="font-size: 26px;left: 50%">
         <div class="col-md-12">{{ "chart-4.title" | translate }} </div>
         <div class="col-md-12">{{ "chart-4.des" | translate }}</div>
       </div>
     </div>
-    <div  class="col-md-3 col-md-3 col-sm-3  col-xs-3 btn-change">
-      <button type="button" id="btn-next" (click)='btnNext()' class="btn btn-default btn-lg">
-        <i class="fa fa-arrow-right"></i>
+    <div class="col-sm-3">
+      <button type="button" id="btn-next4" (click)='btnNext()' class="btn btn-default btn-lg">
+        <span class="fas fa-arrow-right" aria-hidden="true"></span>
       </button>
     </div>
   </div>
   <div class="row">
     <div class="col-md-12 col-lg-12 box">
-      <svg height="320" id="graphic4">
+      <svg height="384" id="graphic4" style="margin-top: 10px">
       </svg>
     </div>
   </div>
