@@ -1,3 +1,13 @@
-<p>
-  chart3 works!
-</p>
+<div id="graphic3"></div>
+<div id="btn3">
+  <button type="button" id="btn-preview3" (click)='btnPreview3()' class="btn btn-default btn-lg">
+    <span class="fas fa-arrow-left" aria-hidden="true"></span>
+  </button>
+  <button type="button" id="btn-next3" (click)='btnNext3()' class="btn btn-default btn-lg">
+    <span class="fas fa-arrow-right" aria-hidden="true"></span>
+  </button>
+</div>
+<div id="txtYear3" [ngStyle]="{'visibility':!showYear ? 'hidden':'visible'}" style='width: 100%; color: gray;font-size: 20px'>
+  <div style="float: left; margin-left: 17px">{{fistYear}}</div>
+  <div style="float: right;margin-right: 90px">{{lastYear}}</div>
+</div>

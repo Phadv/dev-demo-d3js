@@ -10,6 +10,6 @@ export class AppComponent {
   title = 'app-demo-d3js';
 
   constructor(translate: TranslateService) {
-    translate.setDefaultLang('en');
+    translate.setDefaultLang('ja');
   }
 }

@@ -1,25 +1,33 @@
 div#btn2 {
   position: absolute;
-  top: 85px;
+  top: 100px;
   width: 100%;
 }
 button {
-  width: 60px;
-  height: 40px;
+  width: 50px;
+  height: 35px;
+  background: #fff;
   position: absolute;
-  outline: none;
+  border: 2px solid #eaeaea;
+  border-radius: 8px;
+  display: flex;
 }
 button > span{
-  color: gray;
+  color: #eaeaea;
+  top: -3px;
 }
 button#btn-next2 {
-  right: 80px;
+  right: 100px;
 }
-.btn-change{
-  display: flex;
-  justify-content: center;
+#print {
+  left: 100px;
 }
-.btn-change{
-  display: flex;
-  justify-content: center;
+div:disabled {
+  display: none;
+}
+#btn-preview2:focus {
+  outline: none !important;
+}
+#btn-next2:focus {
+  outline: none !important;
 }

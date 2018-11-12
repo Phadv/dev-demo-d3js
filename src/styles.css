@@ -1,5 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
-@import '~bootstrap/dist/css/bootstrap.min.css';
+/*@import '~bootstrap/dist/css/bootstrap.min.css';*/
 .line {
   /*   fill: none が無いとpath の始点と終点を結んで黒に塗りつぶされる */
   fill: none;
@@ -45,7 +45,7 @@
 div.tooltip {
   position: absolute;
   text-align: center;
-  width: 160px;
+  width: 180px;
   height: 50px;
   padding: 2px;
   background: #fff;
@@ -70,11 +70,23 @@ div.tooltip {
 .red {
   fill: #CB4A4C !important;
 }
+.red:hover {
+  fill: red !important;
+}
 .blue {
   fill: #609FEE !important;
 }
+.blue:hover {
+  fill: blue !important;
+}
 .gray {
   fill: #B2B2B2 !important;
+}
+.gray:hover {
+  fill: gray !important;
+}
+.green:hover {
+  fill: Green
 }
 .green {
   fill: Green

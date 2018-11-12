@@ -1,0 +1,33 @@
+div#btn3 {
+  position: absolute;
+  top: 100px;
+  width: 100%;
+}
+button {
+  width: 50px;
+  height: 35px;
+  background: #fff;
+  position: absolute;
+  border: 2px solid #eaeaea;
+  border-radius: 8px;
+  display: flex;
+}
+button > span{
+  color: #eaeaea;
+  top: -3px;
+}
+button#btn-next3 {
+  right: 100px;
+}
+#print {
+  left: 100px;
+}
+div:disabled {
+  display: none;
+}
+#btn-preview3:focus {
+  outline: none !important;
+}
+#btn-next3:focus {
+  outline: none !important;
+}

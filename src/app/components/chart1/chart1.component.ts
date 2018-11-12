@@ -106,23 +106,6 @@ export class Chart1Component implements OnInit {
       .call(xAxis)
       .selectAll('.gX path, .gX line')
       .style('display', 'none');
-    // Add downline for xAsis
-    // .call(function(t) {
-    //   t.each(function (d) {
-    //     const self = d3.select(this);
-    //     const s = self.text().split(' ');
-    //     self.text(null);
-    //     self.append('tspan')
-    //       .attr('x', 0)
-    //       .attr('dy', 20)
-    //       .text(s[0]);
-    //     self.append('tspan')
-    //       .attr('x', 0)
-    //       .attr('dy', 30)
-    //       .style('color', 'gray')
-    //       .text(s[1]);
-    //   });
-    // });
 
     ////////////Render x line fuzzy//////////////
     svg.append('line')
@@ -186,6 +169,7 @@ export class Chart1Component implements OnInit {
       .attr('y', 70)
       .text(this.txtYear);
     });
+
     ////////////Add ToolTip and Line when Hover//////////////
     const div = d3.select('body').append('div')
       .attr('class', 'tooltip')
@@ -200,9 +184,9 @@ export class Chart1Component implements OnInit {
       .style('stroke-dasharray', '10,10')
       .style('opacity', '1');
 
-    this.toolTip(svg, div, fakeRed, 'red');
-    this.toolTip(svg, div, fakeBlue, 'blue');
-    this.toolTip(svg, div, fakeGray, 'gray');
+    this.toolTip(svg, div, fakeRed, 'red', w);
+    this.toolTip(svg, div, fakeBlue, 'blue', w);
+    this.toolTip(svg, div, fakeGray, 'gray', w);
 
   }
 
@@ -253,7 +237,7 @@ export class Chart1Component implements OnInit {
     }
   }
 
-  toolTip(svg, div, data, color) {
+  toolTip(svg, div, data, color, w) {
     this.translate.get('CHART1.LINE2') .subscribe(l2 => {
       this.translate.get('CHART1.LINE3') .subscribe(l3 => {
       svg.selectAll('dot')
@@ -275,15 +259,24 @@ export class Chart1Component implements OnInit {
           return div.style('opacity', '1');
         })
         .on('mousemove', function(d) {
-          const mouse = d3.mouse(this);
+          const centerX = this.getBBox().x + this.getBBox().width / 2;
           const value = (300 - (d.y - 83)) / 300 * 40;
           const number = value.toFixed(2);
+          let txtLine = '';
+          if (color === 'gray') {
+            txtLine = 'TOP';
+          } else if (color === 'blue') {
+            txtLine = l2;
+          } else if (color === 'red') {
+            txtLine = l3;
+          }
           div	.html('<div style="font-size:16px">' + d.year + '事' + (d.month) + '者 12 事' +
-            '</div><div style="float: left;font-size:16px">' + l3 + '</div><div style="float: right;font-size:16px">' + number + '%</div>');
+            '</div><div style="float: left;font-size:16px">' + txtLine + '</div><div style="float: right;font-size:16px">' +
+            number + '%</div>');
           d3.select('.mouse-line')
             .attr('d', function() {
-              let d = 'M' + mouse[0] + ',' + 377;
-              d += ' ' + mouse[0] + ',' + 83;
+              let d = 'M' + centerX + ',' + 377;
+              d += ' ' + centerX + ',' + 83;
               return d;
             });
           return div.style('top', (d3.event.pageY - 10) + 'px').style('left', (d3.event.pageX + 10) + 'px');

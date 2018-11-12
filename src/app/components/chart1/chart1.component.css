@@ -28,3 +28,6 @@ div:disabled {
 #btn-preview:focus {
   outline: none !important;
 }
+#btn-next:focus {
+  outline: none !important;
+}
